@@ -13,6 +13,9 @@
 #ifndef CARAVAN_H
 #define CARAVAN_H
 
+typedef struct CaravanImplementation* Caravan;
+typedef struct NodeImplementation* Node;
+
 #include "pack_animal.h"
 
 /**
