@@ -76,12 +76,29 @@ void add_pack_animal(Caravan caravan, PackAnimal animal)
 
 void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
+  Node current = caravan->head;
+  Node temp;
+  if(animal == 0){
+    return;
+  }
+  if(caravan->head != 0 && caravan->head->animal == animal){
+    caravan->head = current->next;
+    sfree(current);
+    remove_from_caravan(animal, caravan);
 
+    caravan->length--;
+  }
 }
 
 int get_caravan_load(Caravan caravan)
 {
-  return 0;
+  int loaded = 0;
+  Node current = caravan->head;
+  while(current != 0){
+    loaded+=get_load(current->animal);
+    current = current->next;
+  }
+  return loaded;
 }
 
 void unload(Caravan caravan)
