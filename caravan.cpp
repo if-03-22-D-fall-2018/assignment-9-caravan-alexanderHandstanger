@@ -15,6 +15,9 @@
 #include "caravan.h"
 #include "general.h"
 
+#define CAMEL_MAX_SPEED 20
+#define HORSE_MAX_SPEED 50
+
 struct NodeImplementation{
   PackAnimal animal;
   Node next;
@@ -112,7 +115,15 @@ void unload(Caravan caravan)
 
 int get_caravan_speed(Caravan caravan)
 {
-  return 0;
+  Node current = caravan->head;
+  int speed = HORSE_MAX_SPEED;
+  while(current != 0){
+    if(get_actual_speed(current->animal)<speed){
+          speed = get_actual_speed(current->animal);
+    }
+    current = current->next;
+  }
+  return speed;
 }
 
 void optimize_load(Caravan caravan){
